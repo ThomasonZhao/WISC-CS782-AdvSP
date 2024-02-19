@@ -3,7 +3,7 @@
 \settopmatter{printacmref=false}
 % defining the \BibTeX command - from Oren Patashnik's original BibTeX documentation.
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08emT\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-    
+
 \usepackage{nicefrac}
 \usepackage{siunitx}
 \usepackage{array,framed}
@@ -91,10 +91,12 @@
 %\fontfamily{lmr}\selectfont
 % \def\thetitle{A Practical Way to Generate Strong Keys from Noisy Data}
 \fancyhead{}
-\def\thetitle{ACM CCS Sample Template 2019}
+\def\thetitle{Enhancing Digital Security: A Zero-Knowledge Proof-Based Authentication System for User Privacy Protection -- Project Proposal}
 \title{\thetitle}
 
-\author{Rahul Chatterjee}
+\author{Thomason Zhao}
+\affiliation{\small{UW--Madison}}
+\author{Thomas Peng}
 \affiliation{\small{UW--Madison}}
 
 \date{}
@@ -102,27 +104,20 @@
 
 \input{abstract}
 \maketitle
-\keywords{LaTeX template, ACM CCS, ACM}
+\keywords{Zero Knowledge Proof, Authentication, Privacy, Security, Cryptography}
 
 % Section I
-\input{intro}    % basic introduction
+\input{intro}
 \input{background}
-\input{methodology}
-\input{results}
-\input{conclusion}
+\input{eval}
+\input{milestone}
 
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{bib}
 
 % % --- Appendix ---%
-\appendix
-\input{appendix}
+% \appendix
+% \input{appendix}
 
 \end{document}
-
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:

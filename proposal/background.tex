@@ -1,27 +1,36 @@
 \section{Background and Related Work}
 \label{sec:relwork}
-In~\secref{sec:intro} you talked about the project at a very high-level. This is
-the section from where you will start giving details. First with things that are
-already done, and familiarize the reader with background information they will
-need to understand you work. 
 
+\subsection{The Current State of Authentication}
+\label{subsec:auth}
 
-\paragraph{Threat model.}
-Often this section you will discuss the threat-model, but there is no strict consensus on that. 
+Authentication is the front line of defense in securing access to digital services. Current methods of authentication fall into three broad categories, often referred to as the factors of authentication: something you know (like a password), something you have (like a security token or smartphone), and something you are (like a fingerprint or other biometric data). While these methods have been effective to varying degrees, they come with inherent privacy and security challenges.
 
+\begin{newitemize}
+    \item \textbf{Passwords} are easily compromised through phishing, social engineering, or brute force attacks.
+    \item \textbf{Security tokens} and \textbf{SMS-based two-factor authentication} can be intercepted or redirected by sophisticated attackers.
+    \item \textbf{Biometrics}, although unique, pose serious privacy risks; once compromised, you cannot change your biometric data as you would a password.
+\end{newitemize}
 
-Here is how you cite papers. For example, we read papers in the
-class~\cite{rahul2016pwtypos,dodisetal:2004}.  And here is some random citation~\cite{Bojinov:2010:KLP,schechter:2010:pen,everspaugh2015pythia,bellare2009format,Juels:2014}
+These traditional methods often require the storage of PII or sensitive data by the service provider, creating a honeypot for attackers. Moreover, they rely on trust in a third party to handle data securely, which history has shown to be a significant point of failure.
 
+\subsection{Zero-Knowledge Proofs (ZKPs) in Authentication}
+\label{subsec:zkp}
 
-\subsection{Overview of the design}
-\label{sec:overview}
+Zero-knowledge proofs, introduced by Goldwasser, Micali, and Rackoff in the 1980s, provide a method for one party to prove to another that a statement is true without revealing anything beyond the validity of the statement itself. This cryptographic technique has the potential to revolutionize privacy in digital authentication.
 
-And then just to showoff some \LaTeX skills, here is a Tikz plot.
-\input{images/mainflow.tex}
+Recent advancements have led to the development of zk-SNARKs and zk-STARKs, which facilitate non-interactive proofs that are succinct and quickly verifiable. These have seen practical application in blockchain technologies but are yet to be widely adopted in broader authentication systems due to their complexity and computational intensity.
 
-You refer to a figure in the following way. In~\figref{fig:mainflow} we show
-some thing that is relevant for the Multisketch paper by Chatterjee et
-al.~\cite{chatterjee2019multisketches}. Add your bibliography to the
-\textsf{bib.bib} file. You can copy the Bibtex format citation from Google
-Scholar.
+Privacy-preserving authentication systems aim to verify users' credentials without exposing or storing any PII. Few existing systems, such as Idemix and U-Prove, allow for the selective disclosure of attributes, but they have not achieved mainstream use. The challenge is to create a system that is as user-friendly and quick as conventional methods while providing greater privacy and security.
+
+\subsection{Research Gap and Project Objectives}
+
+Privacy-preserving authentication systems aim to verify users' credentials without exposing or storing any PII. Few existing systems, such as Idemix and U-Prove, allow for the selective disclosure of attributes, but they have not achieved mainstream use. The challenge is to create a system that is as user-friendly and quick as conventional methods while providing greater privacy and security.
+
+While ZKPs offer a theoretical basis for privacy-preserving authentication, there is a gap in practical, user-friendly applications that can operate at scale. The complexity of ZKP implementation, computational overhead, and lack of user-centered design are significant barriers.
+
+A major challenge in the application of ZKPs to authentication is the computational overhead. Early ZKP systems required significant processing power, making them impractical for everyday use. Improvements in efficiency, particularly through the use of zk-SNARKs and zk-STARKs, have reduced these costs, but further optimization is needed for widespread adoption.
+
+Another gap is the user experience. Authentication systems must be simple and intuitive to ensure user acceptance. Many ZKP-based systems are not designed with the average user in mind, leading to a lack of adoption despite their technical merits.
+
+Finally, scalability and security are ongoing concerns. A practical ZKP-based authentication system must handle a large number of requests without compromising speed or security. Additionally, it must be robust against evolving cybersecurity threats.

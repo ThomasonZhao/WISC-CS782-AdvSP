@@ -1,6 +1,8 @@
 \section{Background and Related Work}
 \label{sec:relwork}
 
+To provide context for the pressing need to enhance digital security mechanisms, this section delves into the prevailing protocols for user authentication and their associated challenges. We will explore the conventional triad of authentication factors, their vulnerabilities, and the consequent risks they pose to individual privacy and data security.
+
 \subsection{The Current State of Authentication}
 \label{subsec:auth}
 
@@ -12,7 +14,7 @@ Authentication is the front line of defense in securing access to digital servic
     \item \textbf{Biometrics}, although unique, pose serious privacy risks; once compromised, you cannot change your biometric data as you would a password.
 \end{newitemize}
 
-These traditional methods often require the storage of PII or sensitive data by the service provider, creating a honeypot for attackers. Moreover, they rely on trust in a third party to handle data securely, which history has shown to be a significant point of failure.
+These conventional methods often necessitate the storage of Personally Identifiable Information (PII) or sensitive data by the service provider, creating a potential target for attackers to exploit. Additionally, they depend on trusting a third party to securely handle data, a historical weak point that has led to significant vulnerabilities and breaches. ~\cite{charles2022databreach}
 
 \subsection{Zero-Knowledge Proofs (ZKPs) in Authentication}
 \label{subsec:zkp}

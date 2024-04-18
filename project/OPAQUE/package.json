@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@serenity-kit/opaque": "^0.8.4"
+  }
+}

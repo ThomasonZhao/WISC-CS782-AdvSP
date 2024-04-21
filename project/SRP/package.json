@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^8.3.2",
-    "secure-remote-password": "^0.3.1"
-  }
-}

@@ -1,3 +1,5 @@
 .DS_Store
-project/SRP/node_modules/
-project/OPAQUE/node_modules/
+project/SRP/client/node_modules/
+project/SRP/server/node_modules/
+project/OPAQUE/server/node_modules/
+project/OPAQUE/client/node_modules/

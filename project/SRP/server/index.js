@@ -1,11 +1,19 @@
+// path variables //
+const port = 8081;
+const mongodb_path = "127.0.0.1:8083/SRP";
+
+
 const express = require('express');
 const srp = require('secure-remote-password/server');
 const mongoose = require('mongoose');
+const cors = require('cors')
 
+// Middleware to parse JSON request body
 const app = express();
-const port = 8081;
+app.use(express.json());
+app.use(cors());
 
-mongoose.connect('mongodb://127.0.0.1:8083/SRP', {}).then(() => {
+mongoose.connect(`mongodb://${mongodb_path}`, {}).then(() => {
     console.log('Connected to MongoDB');
 }).catch((error) => {
     console.error('Error connecting to MongoDB:', error);
@@ -13,7 +21,6 @@ mongoose.connect('mongodb://127.0.0.1:8083/SRP', {}).then(() => {
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-const srp_users = db.collection('users');
 
 // Define User schema
 const userSchema = new mongoose.Schema({
@@ -24,11 +31,9 @@ const userSchema = new mongoose.Schema({
 });
 const User = db.model('User', userSchema);
 
-// Middleware to parse JSON request body
-app.use(express.json());
 
 // Register route
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
     const { username, salt, verifier } = req.body;
 
     console.log(`Received registration request for username: ${username}`);
@@ -67,7 +72,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-app.post('/login/1', async (req, res) => {
+app.post('/api/login/1', async (req, res) => {
     const { username } = req.body;
 
     console.log(`Received login request for username: ${username} (part 1)`);
@@ -85,10 +90,8 @@ app.post('/login/1', async (req, res) => {
             return;
         }
 
-        // console.log(qry[0]);
+
         const { salt, verifier } = qry[0];
-        // console.log(salt);
-        // console.log(verifier);
 
         const serverEphemeral = srp.generateEphemeral(verifier);
 
@@ -114,7 +117,7 @@ app.post('/login/1', async (req, res) => {
 
 });
 
-app.post('/login/2', async (req, res) => {
+app.post('/api/login/2', async (req, res) => {
 
     const { username, clientEphemeral, clientSession } = req.body;
 

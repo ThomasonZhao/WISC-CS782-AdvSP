@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 function App() {
-    const [serverAddr, setServerAddr] = useState('192.168.1.194:8081');
+    const [serverAddr, setServerAddr] = useState('localhost:8081');
 
   const router = createBrowserRouter([
     {

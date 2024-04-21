@@ -5,8 +5,8 @@ import { sha1 } from "js-sha1"
 import cors from 'cors';
 
 // path variables //
-const port = 8081;
-const mongodb_path = "127.0.0.1:8083/OPAQUE";
+const port = 8083;
+const mongodb_path = "127.0.0.1:8084/OPAQUE";
 
 
 const app = express();
@@ -37,7 +37,14 @@ const Setup = db.model("setup", setupSchema);
 
 // wait for setup seed
 const qry = await Setup.find({});
-if (qry.length !== 1) {
+if (qry.length === 0) {
+    console.log("try to setup server secret");
+    await opaque.ready;
+    serverSetup = opaque.server.createSetup();
+    const newSetup = new Setup({ serverSetup: serverSetup, type: "serverSetup" });
+    await newSetup.save();
+}
+else if (qry.length !== 1) {
     console.error('Error getting server setup');
     console.error(qry.length);
 } else {

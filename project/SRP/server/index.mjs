@@ -1,12 +1,11 @@
+import express from "express";
+import srp from "secure-remote-password/server.js";
+import mongoose from "mongoose";
+import cors from "cors";
+
 // path variables //
 const port = 8081;
 const mongodb_path = "127.0.0.1:8084/SRP";
-
-
-const express = require('express');
-const srp = require('secure-remote-password/server');
-const mongoose = require('mongoose');
-const cors = require('cors')
 
 // Middleware to parse JSON request body
 const app = express();

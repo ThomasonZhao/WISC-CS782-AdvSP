@@ -1,6 +1,6 @@
 {
   "short_name": "SRP",
-  "name": "secure-remote-password",
+  "name": "SRP",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

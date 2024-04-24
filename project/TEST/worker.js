@@ -129,6 +129,8 @@ async function login_OPAQUE(username, password) {
 }
 
 async function register(username, password, protocol) {
+  const startTime = performance.now();
+
   switch (protocol) {
     case "BASIC":
       await register_BASIC(username, password);
@@ -142,9 +144,14 @@ async function register(username, password, protocol) {
     default:
       console.error(`Unknown protocol: ${protocol}`);
   }
+
+  const endTime = performance.now();
+  console.log(JSON.stringify({ type: "register", protocol: protocol, time: (endTime - startTime) / 1000 }));
 }
 
 async function login(username, password, protocol) {
+  const startTime = performance.now();
+
   switch (protocol) {
     case "BASIC":
       await login_BASIC(username, password);
@@ -158,6 +165,9 @@ async function login(username, password, protocol) {
     default:
       console.error(`Unknown protocol: ${protocol}`);
   }
+
+  const endTime = performance.now();
+  console.log(JSON.stringify({ type: "login", protocol: protocol, time: (endTime - startTime) / 1000 }));
 }
 
 // Listen for messages from the main thread
@@ -168,10 +178,6 @@ parentPort.on("message", async (event) => {
       const password = generateRandomString(12);
       await register(username, password, workerData.protocol);
       await login(username, password, workerData.protocol);
-
-      if (i % 10 === 0) {
-        console.log(`Worker ${workerData.workerIndex} completed ${i} rounds.`);
-      }
     }
     parentPort.postMessage({ type: "finished" });
   }

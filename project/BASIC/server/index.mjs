@@ -32,9 +32,11 @@ const User = db.model('User', userSchema);
 
 // Register route
 app.post('/api/register', async (req, res) => {
+    const startTime = performance.now();
+
     const { username, password } = req.body;
 
-    console.log(`Received registration request for username: ${username}`);
+    // console.log(`Received registration request for username: ${username}`);
 
 
     try {
@@ -48,7 +50,7 @@ app.post('/api/register', async (req, res) => {
         const newUser = new User({ username, salt, pwdHash });
         await newUser.save();
 
-        console.log(`salted password is ${saltedPwd}, pwdHash is ${pwdHash}`);
+        // console.log(`salted password is ${saltedPwd}, pwdHash is ${pwdHash}`);
 
 
         res.status(200).json({
@@ -64,12 +66,17 @@ app.post('/api/register', async (req, res) => {
             message: `An error occurred: ${error.message}`
         });
     }
+
+    const endTime = performance.now();
+    console.log(JSON.stringify({ type: "register", protocol: "BASIC", time: (endTime - startTime) / 1000 }));
 });
 
 app.post('/api/login', async (req, res) => {
+    const startTime = performance.now();
+
     const { username, password } = req.body;
 
-    console.log(`Received login request for username: ${username} (part 1)`);
+    // console.log(`Received login request for username: ${username} (part 1)`);
 
     try {
 
@@ -111,6 +118,8 @@ app.post('/api/login', async (req, res) => {
         });
     }
 
+    const endTime = performance.now();
+    console.log(JSON.stringify({ type: "login", protocol: "BASIC", time: (endTime - startTime) / 1000 }));
 });
 
 

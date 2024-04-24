@@ -33,9 +33,11 @@ const User = db.model('User', userSchema);
 
 // Register route
 app.post('/api/register', async (req, res) => {
+    const startTime = performance.now();
+
     const { username, salt, verifier } = req.body;
 
-    console.log(`Received registration request for username: ${username}`);
+    // console.log(`Received registration request for username: ${username}`);
 
 
     try {
@@ -69,12 +71,15 @@ app.post('/api/register', async (req, res) => {
             message: `An error occurred: ${error.message}`
         });
     }
+
+    const endTime = performance.now();
+    console.log(JSON.stringify({ type: "register", protocol: "SRP", time: (endTime - startTime) / 1000 }));
 });
 
 app.post('/api/login/1', async (req, res) => {
     const { username } = req.body;
 
-    console.log(`Received login request for username: ${username} (part 1)`);
+    // console.log(`Received login request for username: ${username} (part 1)`);
 
     try {
 
@@ -120,7 +125,7 @@ app.post('/api/login/2', async (req, res) => {
 
     const { username, clientEphemeral, clientSession } = req.body;
 
-    console.log(`Received login request for username: ${username} (part 2)`);
+    // console.log(`Received login request for username: ${username} (part 2)`);
 
     try {
         const qry = await User.find({ username: username }, { salt: 1, verifier: 1, serverEphemeralSecret: 1 });

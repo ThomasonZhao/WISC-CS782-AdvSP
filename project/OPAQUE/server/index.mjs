@@ -62,7 +62,7 @@ app.use(cors())
 app.post('/api/register/1', async (req, res) => {
     const { username, registrationRequest } = req.body;
 
-    console.log(`Received registration request for username: ${username} (part 1)`);
+    // console.log(`Received registration request for username: ${username} (part 1)`);
 
     try {
         // check repeated username
@@ -104,14 +104,14 @@ app.post('/api/register/1', async (req, res) => {
 app.post('/api/register/2', async (req, res) => {
 
     const { username, registrationRecord } = req.body;
-    console.log(`Received registration request for username: ${username} (part 2)`);
+    // console.log(`Received registration request for username: ${username} (part 2)`);
 
     try {
         const userIdentifier = sha1(username);
 
         const newUser = new User({ userIdentifier, registrationRecord, serverLoginState: "" });
         await newUser.save();
-        console.log(`User ${username} registered`)
+        // console.log(`User ${username} registered`)
 
         res.status(200).json({
             success: true,
@@ -131,7 +131,7 @@ app.post('/api/register/2', async (req, res) => {
 app.post('/api/login/1', async (req, res) => {
     const { username, startLoginRequest } = req.body;
 
-    console.log(`Received login request for username: ${username} (part 1)`);
+    // console.log(`Received login request for username: ${username} (part 1)`);
 
     try {
         const userIdentifier = sha1(username);
@@ -180,7 +180,7 @@ app.post('/api/login/2', async (req, res) => {
 
     const { username, finishLoginRequest } = req.body;
 
-    console.log(`Received login request for username: ${username} (part 2)`);
+    // console.log(`Received login request for username: ${username} (part 2)`);
 
     try {
 

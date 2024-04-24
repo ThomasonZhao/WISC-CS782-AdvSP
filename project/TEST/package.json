@@ -1,0 +1,8 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@serenity-kit/opaque": "^0.8.4",
+    "axios": "^1.6.8",
+    "secure-remote-password": "^0.3.1"
+  }
+}

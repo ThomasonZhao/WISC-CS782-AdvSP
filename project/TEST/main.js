@@ -1,7 +1,7 @@
 import { Worker } from "worker_threads";
 
-const numThreads = 16; // Number of worker threads to create
-const numRounds = 10; // Number of rounds per worker
+const numThreads = 10; // Number of worker threads to create
+const numRounds = 1000; // Number of rounds per worker
 // const protocol = "BASIC"; // Protocol to use for registration
 // const protocol = "SRP"; // Protocol to use for registration
 const protocol = "OPAQUE"; // Protocol to use for registration

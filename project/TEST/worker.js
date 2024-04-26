@@ -9,7 +9,7 @@ function generateRandomString(length) {
   return Array.from({ length }).map(() => charset[Math.floor(Math.random() * charset.length)]).join("");
 }
 
-const serverAddr = "localhost";
+// const serverAddr = "localhost";
 const serverPort_BASIC = 8086;
 const serverPort_SRP = 8081;
 const serverPort_OPAQUE = 8083;

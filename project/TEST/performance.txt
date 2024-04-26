@@ -1,0 +1,3 @@
+BASIC performance test completed in 26.554822848 seconds.
+SRP performance test completed in 543.4428055770001 seconds.
+OPAQUE performance test completed in 283.412808035 seconds.

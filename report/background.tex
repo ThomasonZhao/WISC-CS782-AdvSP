@@ -1,37 +1,40 @@
 \section{Background and Related Work}
 \label{sec:relwork}
+Passwords remain the most common form of user authentication on the internet today. However, traditional password-based authentication systems have long been a point of concern due to their inherent vulnerabilities. Passwords can be easily guessed, stolen, or compromised through a variety of attacks, exposing user accounts and sensitive information to unauthorized access. This has prompted the research and development of more robust authentication methods that can better protect user credentials while maintaining a positive user experience.
 
-To provide context for the pressing need to enhance digital security mechanisms, this section delves into the prevailing protocols for user authentication and their associated challenges. We will explore the conventional triad of authentication factors, their vulnerabilities, and the consequent risks they pose to individual privacy and data security.
+\subsection{Password-Authenticated Key Exchange (PAKE) Protocols}
+\label{sec:pake}
 
-\subsection{The Current State of Authentication}
-\label{subsec:auth}
+Password-authenticated key exchange (PAKE) protocols are a class of cryptographic techniques designed to establish a secure session key between a client and a server without explicitly revealing the user's password. These protocols leverage the user's password as the primary authentication factor, while ensuring that the password itself is not exposed during the authentication process. PAKE protocols are particularly useful in scenarios where traditional password-based authentication mechanisms are vulnerable to offline attacks, such as password guessing, dictionary attacks, and credential stuffing.
 
-Authentication is the front line of defense in securing access to digital services. Current methods of authentication fall into three broad categories, often referred to as the factors of authentication: something you know (like a password), something you have (like a security token or smartphone), and something you are (like a fingerprint or other biometric data) ~\cite{kizza2024auth}. While these methods have been effective to varying degrees, they come with inherent privacy and security challenges.
+The core idea behind PAKE protocols is to allow the client and server to mutually authenticate each other and derive a shared session key, without the server ever learning the client's password. This is achieved through a series of cryptographic operations that ensure the password is only used as a key to unlock the authentication process, rather than being directly transmitted or stored on the server. By preserving the confidentiality of the password, PAKE protocols offer a higher level of security compared to traditional password-based authentication mechanisms.
+
+In a typical PAKE protocol, the client provides their username and password to the server, and the server responds with a challenge or some form of cryptographic information. The client and server then engage in a series of message exchanges, performing various computations and verifications to establish the shared session key. At the end of the protocol, both the client and server are confident that the other party has successfully authenticated, without revealing the password to either party.
+
+\subsection{Threat Model and Research Goal}
+\label{sec:threatmodel}
+
+The primary threat model considered in this project assumes that all adversaries have access to any exposed information, such as password leaks or password distributions, as well as some computational power, such as the ability to precompute password hashes. This threat model reflects the reality of modern cybersecurity challenges, where attackers often possess significant resources and knowledge about the target system.
+
+Within this threat model, we identified two main adversarial roles:
 
 \begin{newitemize}
-    \item \textbf{Passwords} are easily compromised through phishing, social engineering, or brute force attacks.
-    \item \textbf{Security tokens} and \textbf{SMS-based two-factor authentication} can be intercepted or redirected by sophisticated attackers.
-    \item \textbf{Biometrics}, although unique, pose serious privacy risks; once compromised, you cannot change your biometric data as you would a password.
+    \item \textbf{Adversarial Client:} A malicious client that attempts to gain unauthorized access by exploiting any vulnerabilities in the authentication process.
+    \item \textbf{Adversarial Server:} A malicious server that tries to learn a user's identity and credentials by manipulating the authentication process or storing sensitive information.
 \end{newitemize}
 
-These conventional methods often necessitate the storage of Personally Identifiable Information (PII) or sensitive data by the service provider, creating a potential target for attackers to exploit. Additionally, they depend on trusting a third party to securely handle data, a historical weak point that has led to significant vulnerabilities and breaches. ~\cite{charles2022databreach}
+The research goal of this project was to evaluate the usability of different PAKE protocols, assessing their performance, scalability, and user experience. By conducting a comprehensive analysis, we aimed to provide insights into the practical implications of adopting PAKE protocols in real-world authentication systems, addressing the tradeoffs between security, efficiency, and user-friendliness.
 
-\subsection{Zero-Knowledge Proofs (ZKPs) in Authentication}
-\label{subsec:zkp}
+\subsection{Existing PAKE Protocols}
+\label{sec:existpake}
 
-Zero-knowledge proofs ~\cite{goldwasser1989zkp}, introduced by Goldwasser, Micali, and Rackoff in the 1980s, provide a method for one party to prove to another that a statement is true without revealing anything beyond the validity of the statement itself. This cryptographic technique has the potential to revolutionize privacy in digital authentication.
+To achieve our research goal, we selected three PAKE protocols to evaluate:
 
-Recent advancements have led to the great development of zk-SNARKs ~\cite{petkus2019zksnark,chen2023reviewzksnark} and zk-STARKs ~\cite{berentsen2022walkthroughzkstark,cryptoeprint2018zkstark}, which facilitate non-interactive proofs that are succinct and quickly verifiable. These have seen practical application in blockchain technologies but are yet to be widely adopted in broader authentication systems due to their complexity and computational intensity.
+%TODO: Add references
+\begin{newitemize}
+    \item Password Over TLS: This protocol leverages the Transport Layer Security (TLS) protocol to encrypt the communication between the client and server, ensuring that the password is transmitted securely. The server then checks the user's password by comparing it to the stored value in the database.
+    \item Secure Remote Password (SRP): SRP is a PAKE protocol that allows the client and server to authenticate each other and establish a shared session key without explicitly revealing the password. The protocol involves a series of computations and message exchanges to verify the password without transmitting it in plain text.
+    \item OPAQUE: OPAQUE is a more recent PAKE protocol that utilizes an oblivious pseudorandom function (OPRF) to perform the password-based key exchange. This protocol aims to provide stronger security guarantees and protect against a wider range of attacks, such as offline dictionary attacks and server compromise.
+\end{newitemize}
 
-Privacy-preserving authentication systems aim to verify users' credentials without exposing or storing any PII. Few existing systems, such as Idemix ~\cite{camenisch2002idemix} and U-Prove ~\cite{paquin2011uprove1,paquin2011uprove2}, allow for the selective disclosure of attributes, but they have not achieved mainstream use. The challenge is to create a system that is as user-friendly and quick as conventional methods while providing greater privacy and security.
-
-\subsection{Research Gap and Project Objectives}
-\label{subsec:gap}
-
-While ZKPs offer a theoretical basis for privacy-preserving authentication, there is a gap in practical, user-friendly applications that can operate at scale. The complexity of ZKP implementation, computational overhead, and lack of user-centered design are significant barriers.
-
-A major challenge in the application of ZKPs to authentication is the computational overhead. Early ZKP systems required significant processing power, making them impractical for everyday use. Improvements in efficiency, particularly through the use of zk-SNARKs and zk-STARKs, have reduced these costs, but further optimization is needed for widespread adoption.
-
-Another gap is the user experience. Authentication systems must be simple and intuitive to ensure user acceptance. Many ZKP-based systems are not designed with the average user in mind, leading to a lack of adoption despite their technical merits.
-
-Finally, scalability and security are ongoing concerns. A practical ZKP-based authentication system must handle a large number of requests without compromising speed or security. Additionally, it must be robust against evolving cybersecurity threats.
+By evaluating these different PAKE protocols, we aimed to gain a comprehensive understanding of the tradeoffs between their usability, performance, and security characteristics, ultimately providing insights to guide the adoption of PAKE-based authentication in real-world applications.

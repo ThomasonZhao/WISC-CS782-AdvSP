@@ -28,11 +28,11 @@ The research goal of this project was to evaluate the usability of different PAK
 \subsection{Existing PAKE Protocols}
 \label{sec:existpake}
 
-To achieve our research goal, we selected three PAKE protocols to evaluate:
+To achieve our research goal, we selected two PAKE protocols to evaluate - Secure Remote Password (SRP) and OPAQUE. These protocols represent different approaches to password-authenticated key exchange and offer varying levels of security and usability. We also implemented a baseline - Password Over TLS - authentication mechanism as a point of comparison to assess the performance and security benefits of PAKE protocols.
 
 %TODO: Add references
 \begin{newitemize}
-  \item Password Over TLS: This protocol leverages the Transport Layer Security (TLS) protocol to encrypt the communication between the client and server, ensuring that the password is transmitted securely. The server then checks the user's password by comparing it to the stored value in the database.
+  \item Password Over TLS (baseline): This protocol leverages the Transport Layer Security (TLS) protocol to encrypt the communication between the client and server, ensuring that the password is transmitted securely. The server then checks the user's password by comparing it to the stored value in the database.
   \item Secure Remote Password (SRP): SRP is a PAKE protocol that allows the client and server to authenticate each other and establish a shared session key without explicitly revealing the password. The protocol involves a series of computations and message exchanges to verify the password without transmitting it in plain text.
   \item OPAQUE: OPAQUE is a more recent PAKE protocol that utilizes an oblivious pseudorandom function (OPRF) to perform the password-based key exchange. This protocol aims to provide stronger security guarantees and protect against a wider range of attacks, such as offline dictionary attacks and server compromise.
 \end{newitemize}

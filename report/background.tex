@@ -19,8 +19,8 @@ The primary threat model considered in this project assumes that all adversaries
 Within this threat model, we identified two main adversarial roles:
 
 \begin{newitemize}
-    \item \textbf{Adversarial Client:} A malicious client that attempts to gain unauthorized access by exploiting any vulnerabilities in the authentication process.
-    \item \textbf{Adversarial Server:} A malicious server that tries to learn a user's identity and credentials by manipulating the authentication process or storing sensitive information.
+  \item \textbf{Adversarial Client:} A malicious client that attempts to gain unauthorized access by exploiting any vulnerabilities in the authentication process.
+  \item \textbf{Adversarial Server:} A malicious server that tries to learn a user's identity and credentials by manipulating the authentication process or storing sensitive information.
 \end{newitemize}
 
 The research goal of this project was to evaluate the usability of different PAKE protocols, assessing their performance, scalability, and user experience. By conducting a comprehensive analysis, we aimed to provide insights into the practical implications of adopting PAKE protocols in real-world authentication systems, addressing the tradeoffs between security, efficiency, and user-friendliness.
@@ -32,9 +32,9 @@ To achieve our research goal, we selected three PAKE protocols to evaluate:
 
 %TODO: Add references
 \begin{newitemize}
-    \item Password Over TLS: This protocol leverages the Transport Layer Security (TLS) protocol to encrypt the communication between the client and server, ensuring that the password is transmitted securely. The server then checks the user's password by comparing it to the stored value in the database.
-    \item Secure Remote Password (SRP): SRP is a PAKE protocol that allows the client and server to authenticate each other and establish a shared session key without explicitly revealing the password. The protocol involves a series of computations and message exchanges to verify the password without transmitting it in plain text.
-    \item OPAQUE: OPAQUE is a more recent PAKE protocol that utilizes an oblivious pseudorandom function (OPRF) to perform the password-based key exchange. This protocol aims to provide stronger security guarantees and protect against a wider range of attacks, such as offline dictionary attacks and server compromise.
+  \item Password Over TLS: This protocol leverages the Transport Layer Security (TLS) protocol to encrypt the communication between the client and server, ensuring that the password is transmitted securely. The server then checks the user's password by comparing it to the stored value in the database.
+  \item Secure Remote Password (SRP): SRP is a PAKE protocol that allows the client and server to authenticate each other and establish a shared session key without explicitly revealing the password. The protocol involves a series of computations and message exchanges to verify the password without transmitting it in plain text.
+  \item OPAQUE: OPAQUE is a more recent PAKE protocol that utilizes an oblivious pseudorandom function (OPRF) to perform the password-based key exchange. This protocol aims to provide stronger security guarantees and protect against a wider range of attacks, such as offline dictionary attacks and server compromise.
 \end{newitemize}
 
 By evaluating these different PAKE protocols, we aimed to gain a comprehensive understanding of the tradeoffs between their usability, performance, and security characteristics, ultimately providing insights to guide the adoption of PAKE-based authentication in real-world applications.

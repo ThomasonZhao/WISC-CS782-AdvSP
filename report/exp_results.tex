@@ -1,6 +1,7 @@
 \section{Experimental Measurements and Results}
 \label{sec:exp_results}
 
+%TODO: Reference the figure in the text
 To evaluate the performance and scalability of the PAKE protocols, we conducted a series of experiments on the server-side implementation. The goal was to measure the impact of the different PAKE protocols on the system's resource utilization, including CPU usage and storage requirements, to understand the practical implications of adopting these protocols in real-world applications.
 
 Our experiments simulated a high-pressure user registration and login scenario, with 10 concurrent user threads performing 1,000 rounds of registration and login. The results showed a significant difference in the CPU usage patterns between the PAKE protocols and the basic password-over-TLS authentication.
@@ -8,6 +9,7 @@ Our experiments simulated a high-pressure user registration and login scenario, 
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.4\textwidth]{./images/cpu_usage_comparison.png}
+  \caption{Comparison of server-side CPU usage}
   \label{fig:cpu_usage}
 \end{figure}
 
@@ -24,6 +26,7 @@ The OPAQUE protocol also showed elevated CPU usage compared to Password Over TLS
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.4\textwidth]{./images/database_usage_metrics_line.png}
+  \caption{Comparison of server-side storage usage}
   \label{fig:storage_usage}
 \end{figure}
 
@@ -42,6 +45,7 @@ The Password Over TLS protocol, being the simplest in terms of server-side imple
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.4\textwidth]{./images/performance_test.png}
+  \caption{Comparison of client-side per-request response times}
   \label{fig:performance_test}
 \end{figure}
 

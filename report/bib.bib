@@ -1,200 +1,46 @@
-@misc{petkus2019zksnark,
-  title         = {Why and How zk-SNARK Works},
-  author        = {Maksym Petkus},
-  year          = {2019},
-  eprint        = {1906.07221},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.CR}
-}
-
-@misc{chen2023reviewzksnark,
-  title         = {A Review of zk-SNARKs},
-  author        = {Thomas Chen and Hui Lu and Teeramet Kunpittaya and Alan Luo},
-  year          = {2023},
-  eprint        = {2202.06877},
-  archiveprefix = {arXiv},
-  primaryclass  = {cs.CR}
-}
-
-@inproceedings{grzonkowski2008extending,
-  author    = {Grzonkowski, S\l{}awomir and Zaremba, Wojciech and Zaremba, Maciej and McDaniel, Bill},
-  title     = {Extending web applications with a lightweight zero knowledge proof authentication},
-  year      = {2008},
-  isbn      = {9781605580463},
-  publisher = {Association for Computing Machinery},
-  address   = {New York, NY, USA},
-  url       = {https://doi.org/10.1145/1456223.1456241},
-  doi       = {10.1145/1456223.1456241},
-  abstract  = {User authentication is a crucial requirement for secure transactions and access to the sensitive resources on the Web. We propose, implement and evaluate a Zero-Knowledge Proof Authentication (ZKP) algorithm based on isomorphic graphs. The proposed mechanism allows for authentication with varying confidence and security levels.We suggest that most of the computations should be carried out by the user's web browser without revealing password or login at any point in time; instead generated random isomorphic graphs and permutation functions based on the user login/password can be exchanged.Our experimental evaluation shows that by combining the asynchronous web with ZKP protocols, it is feasible to satisfy existing usability standards on the web.},
-  booktitle = {Proceedings of the 5th International Conference on Soft Computing as Transdisciplinary Science and Technology},
-  pages     = {65-70},
-  numpages  = {6},
-  keywords  = {zero knowledge proof, web 2.0 authentication, web 2.0, protocols, password, graph isomorphism},
-  location  = {Cergy-Pontoise, France},
-  series    = {CSTST '08}
-}
-
-@inproceedings{fieg1987zkpidentity,
-  author    = {Fiege, U. and Fiat, A. and Shamir, A.},
-  title     = {Zero knowledge proofs of identity},
-  year      = {1987},
-  isbn      = {0897912217},
-  publisher = {Association for Computing Machinery},
-  address   = {New York, NY, USA},
-  url       = {https://doi.org/10.1145/28395.28419},
-  doi       = {10.1145/28395.28419},
-  abstract  = {In this paper we extend the notion of zero knowledge proofs of membership (which reveal one bit of information) to zero knowledge proofs of knowledge (which reveal no information whatsoever). After formally defining this notion, we show its relevance to identification schemes, in which parties prove their identity by demonstrating their knowledge rather than by proving the validity of assertions. We describe a novel scheme which is provably secure if factoring is difficult and whose practical implementations are about two orders of magnitude faster than RSA-based identification schemes. In the last part of the paper we consider the question of sequential versus parallel executions of zero knowledge protocols, define a new notion of “transferable information”, and prove that the parallel version of our identification scheme (which is not known to be zero knowledge) is secure since it reveals no transferable information.},
-  booktitle = {Proceedings of the Nineteenth Annual ACM Symposium on Theory of Computing},
-  pages     = {210-217},
-  numpages  = {8},
-  location  = {New York, New York, USA},
-  series    = {STOC '87}
-}
-
-@article{goldwasser1989zkp,
-  author   = {Goldwasser, Shafi and Micali, Silvio and Rackoff, Charles},
-  title    = {The Knowledge Complexity of Interactive Proof Systems},
-  journal  = {SIAM Journal on Computing},
-  volume   = {18},
-  number   = {1},
-  pages    = {186-208},
-  year     = {1989},
-  doi      = {10.1137/0218012},
-  url      = {https://doi.org/10.1137/0218012},
-  eprint   = {https://doi.org/10.1137/0218012},
-  abstract = { Usually, a proof of a theorem contains more knowledge than the mere fact that the theorem is true. For instance, to prove that a graph is Hamiltonian it suffices to exhibit a Hamiltonian tour in it; however, this seems to contain more knowledge than the single bit Hamiltonian/non-Hamiltonian.In this paper a computational complexity theory of the “knowledge” contained in a proof is developed. Zero-knowledge proofs are defined as those proofs that convey no additional knowledge other than the correctness of the proposition in question. Examples of zero-knowledge proof systems are given for the languages of quadratic residuosity and 'quadratic nonresiduosity. These are the first examples of zero-knowledge proofs for languages not known to be efficiently recognizable. }
-}
-
-@article{walshe2019nizkpauthiot,
-  title    = {Non-interactive zero knowledge proofs for the authentication of IoT devices in reduced connectivity environments},
-  journal  = {Ad Hoc Networks},
-  volume   = {95},
-  pages    = {101988},
-  year     = {2019},
-  issn     = {1570-8705},
-  doi      = {https://doi.org/10.1016/j.adhoc.2019.101988 },
-  url      = {https://www.sciencedirect.com/science/article/pii/S1570870519304895 },
-  author   = {Marcus Walshe and Gregory Epiphaniou and Haider Al-Khateeb and Mohammad Hammoudeh and Vasilios Katos and Ali Dehghantanha},
-  keywords = {IoT, ZKP, NIZKP, Authentication, WSN, ANOVA},
-  abstract = {Current authentication protocols seek to establish authenticated sessions over insecure channels while maintaining a small footprint considering the energy consumption and computational overheads. Traditional authentication schemes must store a form of authentication data on the devices, putting this data at risk. Approaches based on purely public/private key infrastructure come with additional computation and maintenance costs. This work proposes a novel non-interactive zero-knowledge (NIZKP) authentication protocol that incorporates the limiting factors in IoT communication devices and sensors. Our protocol considers the inherent network instability and replaces the ZKP NP-hard problem using the Merkle tree structure for the creation of the authentication challenge. A series of simulations evaluate the performance of NIZKP against traditional ZKP approaches based on graph isomorphism. A set of performance metrics has been used, namely the channel rounds for client authentication, effects of the authentication processes, and the protocol interactions to determine areas of improvements. The simulation results indicate empirical evidence for the suitability of our NIKP approach for authentication purposes in resource-constrained IoT environments.}
-}
-
-@article{major2020zkpprotocolauth,
-  title     = {An authentication protocol based on chaos and zero knowledge proof},
-  author    = {Major, Will and Buchanan, William J. and Ahmad, Jawad},
-  journal   = {Nonlinear Dynamics},
-  volume    = {99},
-  number    = {3},
-  pages     = {3065--3087},
-  year      = {2020},
-  month     = {Mar},
-  doi       = {10.1007/s11071-020-05463-3},
-  publisher = {Springer}
-}
-
-@inproceedings{camenisch2002idemix,
-  author    = {Camenisch, Jan and Van Herreweghen, Els},
-  title     = {Design and implementation of the idemix anonymous credential system},
-  year      = {2002},
-  isbn      = {1581136129},
-  publisher = {Association for Computing Machinery},
-  address   = {New York, NY, USA},
-  url       = {https://doi.org/10.1145/586110.586114},
-  doi       = {10.1145/586110.586114},
-  abstract  = {Anonymous credential systems [8, 9, 12, 24] allow anonymous yet authenticated and accountable transactions between users and service providers. As such, they represent a powerful technique for protecting users' privacy when conducting Internet transactions. In this paper, we describe the design and implementation of an anonymous credential system based on the protocols developed by [6]. The system is based on new high-level primitives and interfaces allowing for easy integration into access control systems. The prototype was realized in Java. We demonstrate its use and some deployment issues with the description of an operational demonstration scenario.},
-  booktitle = {Proceedings of the 9th ACM Conference on Computer and Communications Security},
-  pages     = {21-30},
-  numpages  = {10},
-  keywords  = {anonymous credential systems, cryptographic protocols, privacy},
-  location  = {Washington, DC, USA},
-  series    = {CCS '02}
-}
-
-@article{paquin2011uprove1,
-  title   = {U-prove technology overview v1. 1},
-  author  = {Paquin, Christian},
-  journal = {Microsoft Corporation Draft Revision},
-  volume  = {1},
-  year    = {2011}
-}
-
-@article{paquin2011uprove2,
-  title   = {U-prove cryptographic specification v1. 1},
-  author  = {Paquin, Christian and Zaverucha, Greg},
-  journal = {Technical Report, Microsoft Corporation},
-  year    = {2011}
-}
-
-@article{idrus2013reviewauth,
-  title       = {{A Review on Authentication Methods}},
-  author      = {Syed Idrus, Syed Zulkarnain and Cherrier, Estelle and Rosenberger, Christophe and Schwartzmann, Jean-Jacques},
-  url         = {https://hal.science/hal-00912435},
-  journal     = {{Australian Journal of Basic and Applied Sciences}},
-  volume      = {7},
-  number      = {5},
-  pages       = {95-107},
-  year        = {2013},
-  month       = Mar,
-  keywords    = {Information technology ; user authentication ; online services ; biometrics. ; cryptography ; biometrics},
-  pdf         = {https://hal.science/hal-00912435/file/A_Review_on_Authentication_Methods.pdf},
-  hal_id      = {hal-00912435},
-  hal_version = {v1}
-}
-
-@article{wang2021authattacks,
-  title    = {Attacks and defenses in user authentication systems: A survey},
-  journal  = {Journal of Network and Computer Applications},
-  volume   = {188},
-  pages    = {103080},
-  year     = {2021},
-  issn     = {1084-8045},
-  doi      = {https://doi.org/10.1016/j.jnca.2021.103080},
-  url      = {https://www.sciencedirect.com/science/article/pii/S1084804521001028},
-  author   = {Xuerui Wang and Zheng Yan and Rui Zhang and Peng Zhang},
-  keywords = {Authentication system, Attack detection, Defense mechanisms, Spoofing attack, Liveness detection, CAPTCHA, Biometric authentication, Machine learning, Deep neural networks},
-  abstract = {User authentication systems (in short authentication systems) have wide utilization in our daily life. Unfortunately, existing authentication systems are prone to various attacks while both system security and usability are expected to be satisfied. But the current research still lacks a thorough survey on various types of attacks and corresponding countermeasures regarding user authentication, including traditional password-based and emerging biometric-based systems. In this paper, we make a comprehensive review on attacks and defenses of the authentication systems. We firstly introduce a number of common attacks by classifying them into different categories based on attacker knowledge, attack target, attack form and attack strength. Then, we propose a set of evaluation criteria for evaluating different kinds of attack defense mechanisms. Furthermore, we review and evaluate the existing methods of detecting and resisting attacks in the authentication systems by employing the proposed evaluation criteria as a common measure. Specifically, we focus on comparing and analyzing the performance of different defense mechanisms in different types of authentication systems. Through serious review and analysis, we put forward a number of open issues and propose some promising future research directions, hoping to inspire further research in this field.}
-}
-
-@article{berentsen2022walkthroughzkstark,
-  title  = {A Walk-through of a Simple Zk-STARK Proof},
-  author = {Berentsen, Aleksander and Lenzi, Jeremias and Nyffenegger, Remo},
-  year   = {2022},
-  month  = {December},
-  url    = {https://ssrn.com/abstract=4308637},
-  doi    = {10.2139/ssrn.4308637}
-}
-
-@misc{cryptoeprint2018zkstark,
-  author       = {Eli Ben-Sasson and Iddo Bentov and Yinon Horesh and Michael Riabzev},
-  title        = {Scalable, transparent, and post-quantum secure computational integrity},
-  howpublished = {Cryptology ePrint Archive, Paper 2018/046},
-  year         = {2018},
-  note         = {\url{https://eprint.iacr.org/2018/046}},
-  url          = {https://eprint.iacr.org/2018/046}
-}
-
-@inbook{kizza2024auth,
-  author    = {Kizza, Joseph Migga},
-  title     = {Authentication},
-  booktitle = {Guide to Computer Network Security},
-  year      = {2024},
-  publisher = {Springer International Publishing},
-  address   = {Cham},
-  pages     = {215--238},
-  abstract  = {Authentication is the process of validating the identity of someone or something. It uses information provided to the authenticatorAuthenticator to determine whether someone or something is, in fact, who or what it is declared to be. In private and public computing systems, for example, in computer networks, the process of authentication commonly involves someone, usually the user, using a password provided by the system administrator to logon. The user's possession of a password is meant to guarantee that the user is authentic. It means that at some previous time, the user requested, from the system administrator, and the administrator assigned and or registered a self-selected password. The user presents this password to the logon to prove that he or she knows something no one else could know. Generally, authentication requires the presentation of credentials or items of value to really prove the claim of who one is. This chapter discusses this process of authentic proof of a system user.},
-  isbn      = {978-3-031-47549-8},
-  doi       = {10.1007/978-3-031-47549-8_10},
-  url       = {https://doi.org/10.1007/978-3-031-47549-8_10}
-}
-
-@inproceedings{charles2022databreach,
-  author    = {Fleury-Charles, Aaron and Chowdhury, Md Minhaz and Rifat, Nafiz},
-  booktitle = {2022 IEEE International Conference on Electro Information Technology (eIT)},
-  title     = {Data Breaches: Vulnerable Privacy},
-  year      = {2022},
+@inproceedings{taneski2014password,
+  author    = {Taneski, Viktor and Heričko, Marjan and Brumen, Boštjan},
+  booktitle = {2014 37th International Convention on Information and Communication Technology, Electronics and Microelectronics (MIPRO)},
+  title     = {Password security — No change in 35 years?},
+  year      = {2014},
   volume    = {},
   number    = {},
-  pages     = {538-543},
-  keywords  = {Time-frequency analysis;Law;Phishing;Conferences;Education;Data protection;Companies;Data Breach;Computer Security;Data Leaks},
-  doi       = {10.1109/eIT53891.2022.9814044}
+  pages     = {1360-1365},
+  keywords  = {Authentication;Computers;Databases;Libraries;Information systems;Human factors},
+  doi       = {10.1109/MIPRO.2014.6859779}
+}
+
+@article{zviran1999password,
+  author    = {Moshe Zviran and William J. Haga},
+  title     = {Password Security: An Empirical Study},
+  journal   = {Journal of Management Information Systems},
+  volume    = {15},
+  number    = {4},
+  pages     = {161--185},
+  year      = {1999},
+  publisher = {Routledge},
+  doi       = {10.1080/07421222.1999.11518226},
+  url       = {https://doi.org/10.1080/07421222.1999.11518226},
+  eprint    = {https://doi.org/10.1080/07421222.1999.11518226}
+}
+
+@inproceedings{Jarecki2018opaque,
+  title     = {OPAQUE: An Asymmetric PAKE Protocol Secure Against Pre-computation Attacks},
+  booktitle = {EUROCRYPT (3)},
+  publisher = {Springer},
+  pages     = {456-486},
+  doi       = {10.1007/978-3-319-78372-7_15},
+  author    = {Stanislaw Jarecki and Hugo Krawczyk and Jiayu Xu},
+  year      = 2018
+}
+
+@inproceedings{wu1998srp,
+  title        = {The Secure Remote Password Protocol.},
+  author       = {Wu, Thomas D and others},
+  booktitle    = {NDSS},
+  volume       = {98},
+  number       = {97},
+  pages        = {111},
+  year         = {1998},
+  organization = {Citeseer}
 }

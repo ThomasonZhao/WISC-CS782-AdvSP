@@ -1,0 +1,124 @@
+\section{Implementation}
+\label{sec:implementation}
+
+To measure the difference between PAKE protocols and password over TLS, we chose to create three identical applications that utilize different protocols as authentication methods - SRP, OPAQUE, and Password over TLS, where the Password over TLS implementation is used as a control to compare the differences with the PAKE protocols.
+A simple registration and login page is created for each of the authentication methods, and to minimize the difference between the authentication methods, we tried to develop all three of them using same JavaScript modules. 
+We chose to use React for our client side front end framework, NodeJS for server side back end, and MongoDB for the database.
+Lastly, the client will communicate to the server with HTTP requests.
+The frameworks we chose are commonly see in actual implementation around the world today, which we believe that by using these frameworks we can yield a closer performance to what it would be if these protocols were used in actual production.~\cite{swacha2023evolution}
+
+Also, to understand how other users would feel about PAKE protocols, we created a questionnaire for users to fill out after trying out our implementation, in the hope for learning not only their experience with our implementation, but also their perspectives towards the promises of PAKE protocols.
+
+
+\subsection{Service design}
+All of these services are hosted on the cloud, with each component — the front end, back end, and databases — running on virtual private servers with 1 core and 2G memory.
+% separate processes and assigned unique IP addresses.
+
+\subsubsection{Front end:}
+Since the goal is to analyze the performance and user experience, we aim to design a simple but functional login and register page. 
+For the home page, we only include two buttons that bring users to either register page or login page.
+In register page and login page, there are two input boxes for users to put username and password respectively, and two buttons, one to submit and one to jump to another page for easier access; the one button on register page will bring users to login page, and vice versa.
+After clicking the submit button, the front end will start performing per protocol, and inform users if the register or login attempt is successful or not.
+Routing in these pages is managed with React-router-dom, and communications with back end is handled with the axios module.
+
+\subsubsection{Back end:}
+
+Our back end implementation uses NodeJS to serve as the central hub for server-side calculations and to facilitate communication with the MongoDB database using the mongoose module.
+To ensure seamless interaction, Cross-Origin Resource Sharing (CORS) is enabled across all routes, with the origin set to the front end service's IP address. 
+The back end service is designed to listen on a port and handle register or login API calls from the client. 
+There might be multiple routes required for one register or login request due to to design of protocol, but on a successful attempt all the routes should be executed exactly once.
+
+\subsubsection{Database:}
+We booted up a MongoDB database using the latest MongoDB docker image, since it is easier to manage than installing and run. 
+We created 3 different databases in MongoDB, with each one dedicated to store data received through corresponding protocol.
+
+\subsection{SRP}
+% \label{sec:srp}
+After searching over GitHub for a proper implementation for SRP protocols in JavasSript, we chose the implementation by LinusU/\newline secure-remote-password that has actual source code which we can investigate, and the fact that the repository has multiple stars strengthen our belief that it is a good implementation.~\cite{SRPrepo}
+% The SRP module implementation can be found here:
+
+\subsubsection{Register flow:}
+To register to a SRP service, the client side will start by generating a salt, and derive a private key through the salt, username and password.
+The client will then produce a verifier with the private key, and both the username and the verifier will be sent to the server and stored in the database.
+
+
+\subsubsection{Login flow:}
+To login a service with SRP protocol, the client side needs to make 2 HTTP requests to the server in one login attempt. 
+
+In the first request, the client will generate a pair of secret/public ephemeral pair, and send the public ephemeral to the server alongside with the username.
+Upon receiving the username, the server can then lookup the salt and verifier stored for the user, and generate the server's secret/public ephemeral pair using the verifier.
+The salt and server's public ephemeral would be sent back to client.
+
+Since the server cannot save temporary data in the memory after an HTTP request is handled, we store the private ephemeral key back to the database under the username, and make sure to clean up after a certain period of time if it is never used.
+
+When the salt and server public ephemeral arrived at the client side, the client can then reproduce the private key with the salt, username and password.
+With the private key, the client should be able to derive a shared strong session key using server's public ephemeral, client's secret ephemeral, the private key and password.
+The client should send another HTTP request to verify the correctness of session key derived. 
+
+Upon receiving the request, the server will also derive a session key with the server's secret ephemeral, client's public ephemeral, and the verifier.
+The server will then send a proof back to the client, allowing the client to check if both parties end up having the same key.
+
+
+\subsection{OPAQUE}
+% \label{sec:opaque}
+We decided to use the implementation by serenity-kit/opaque on GitHub, which was still maintained up until three months ago, with a website for detailed documentation.~\cite{OPAQUErepo}
+Although the source code for the protocol is not provided on GitHub, the fact that it is based on another Meta project and the thorough documentation prompted our decision to use this implementation.
+
+\subsubsection{Setting up the server:}
+OPAQUE requires a long-term secret key to perform any server-side calculations.
+To load the key, we try to search in the database for the secret key.
+If it is the server's initial boot-up, we will generate a new secret key with the module's dedicated function and store it in the database.
+
+\subsubsection{Register flow:}
+Upon register, the client would generate a registration request with the password, which will be sent to the server and wait for its approval.
+The server would create a response to the request, using the server secret key and username, and send it back to client.
+Client will then encrypt the response and the password into an encrypted registration record, send the record to the server, and store it in the database alongside with the username.
+If it is the first time the server being booted up, we will generate a new private key and store it in the database.
+
+\subsubsection{Login flow:}
+To login, client would start with creating a login request with the password, and send the request to the server.
+A variable that record the client login state is also generated in the process, which will be used in later steps.
+
+The server will query out the user's registration record from the database, and calculate the response with server secret key, username and registration record.
+Also, this step generates a server login state variable, which will be used in later steps.
+Same issue as SRP, since data cannot be stored in memory after the HTTP request is handled, we will store the server login state variable in the database under the username, and drop the value if it is not used after a period of time.
+
+After the client received the response, client can calculate the result by using the client login state variable, the response and password.
+If the login result does not yield a true value, the login fails and should be stopped.
+Else, client can derive the session key and a variable for finishing login request from the login result.
+The finishing request will be sent to the server to for session key generation.
+
+Finally, the server will calculate the session key with the client's finishing request and the server login state variable.
+
+
+
+
+\subsection{Password over TLS}
+% \label{sec:tls}
+In the Password over TLS implementation, we chose to use CryptoJS as the source library for our hash functions.
+Our implementation only uses the SHA256 function in the library for calculating salted password hash.
+
+\subsubsection{Register flow:}
+Both username and password are sent from client to the server in plain text.
+The server would generate a random salt, concatenate the salt to the password, and compute the SHA256 hash.
+Finally, the username, password hash and salt will be stored in the database.
+
+\subsubsection{Login flow:}
+Both username and password are sent from client to the server in plain text.
+The server will query out the user's salt, concatenate to the password provided by client, and compute its SHA256 hash.
+The server will then check if the calculated hash is exactly the same as the one stored in the database.
+Finally, the result of pass or fail will be sent back to client.
+
+\subsection{Survey design}
+
+We created a simple anonymous Google Forms questionnaire to understand whether users understand PAKE protocols, and their experiences with them after trying the protocols out themselves.
+The questionnaire focuses on three main sections: knowledge about PAKEs, trust towards current Password over TLS implementation, and experience feedback for PAKEs.
+We sent the link to the Google Forms to our friends and family, and asked them to forward further to their friends and family.
+
+
+We started by asking if users have ever heard of PAKE protocols, and where they heard about it if they give a positive answer.
+Then, we asked them if there is a protocol that requires no sensitive information being sent over the internet, how likely will they use the protocol instead of Password over TLS.
+Lastly, we provided the IP address to our implementations, and asked them to try the three services out themselves.
+We then ask them if they feel any latency in response time between the three protocols.
+
+The full survey is provided in ~\secref{sec:survey}

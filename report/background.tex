@@ -1,0 +1,40 @@
+\section{Background and Related Work}
+\label{sec:relwork}
+
+Passwords remain the most common form of user authentication on the internet today. However, traditional password-based authentication systems have long been a point of concern due to their inherent vulnerabilities. Passwords can be easily guessed, stolen, or compromised through a variety of attacks, exposing user accounts and sensitive information to unauthorized access. This has prompted the research and development of more robust authentication methods that can better protect user credentials while maintaining a positive user experience.
+
+\subsection{Password-Authenticated Key Exchange (PAKE) Protocols}
+\label{sec:pake}
+
+Password-authenticated key exchange (PAKE) protocols are a class of cryptographic techniques designed to establish a secure session key between a client and a server without explicitly revealing the user's password. ~\cite{hao2022sokpake} These protocols leverage the user's password as the primary authentication factor, while ensuring that the password itself is not exposed during the authentication process. PAKE protocols are particularly useful in scenarios where traditional password-based authentication mechanisms are vulnerable to offline attacks, such as password guessing, dictionary attacks, and credential stuffing.
+
+The core idea behind PAKE protocols is to allow the client and server to mutually authenticate each other and derive a shared session key, without the server ever learning the client's password. This is achieved through a series of cryptographic operations that ensure the password is only used as a key to unlock the authentication process, rather than being directly transmitted or stored on the server. By preserving the confidentiality of the password, PAKE protocols offer a higher level of security compared to traditional password-based authentication mechanisms.
+
+In a typical PAKE protocol, the client and server each have a shared low-entropy password or passphrase, but they do not transmit this password during the protocol. The client and server engage in a series of cryptographic message exchanges, performing various computations and verifications. Through these computations and message exchanges, the client and server are able to establish a shared high-entropy session key, without ever revealing the password to each other. At the end of the protocol, both the client and server are confident that the other party has successfully authenticated, and they can use the established session key for secure communication, without the need to transmit the password.
+
+\subsection{Threat Model and Research Goal}
+\label{sec:threatmodel}
+
+The primary threat model considered in this project assumes that all adversaries have access to any exposed information, such as password leaks or password distributions, as well as some computational power, such as the ability to precompute password hashes. This threat model reflects the reality of modern cybersecurity challenges, where attackers often possess significant resources and knowledge about the target system.
+
+Within this threat model, we identified two main adversarial roles:
+
+\begin{newitemize}
+  \item \textbf{Adversarial Client:} A malicious client that attempts to gain unauthorized access by exploiting any vulnerabilities in the authentication process.
+  \item \textbf{Adversarial Server:} A malicious server that tries to learn a user's identity and credentials by manipulating the authentication process or storing sensitive information.
+\end{newitemize}
+
+The research goal of this project was to evaluate the usability of different PAKE protocols, assessing their performance, scalability, and user experience. By conducting a comprehensive analysis, we aimed to provide insights into the practical implications of adopting PAKE protocols in real-world authentication systems, addressing the tradeoffs between security, efficiency, and user-friendliness.
+
+\subsection{Existing PAKE Protocols}
+\label{sec:existpake}
+
+To achieve our research goal, we selected two PAKE protocols to evaluate - Secure Remote Password (SRP) and OPAQUE. ~\cite{jarecki2018opaque, wu1998srp} These protocols represent different approaches to password-authenticated key exchange and offer varying levels of security and usability. We also implemented a baseline - Password Over TLS - authentication mechanism as a point of comparison to assess the performance and security benefits of PAKE protocols.
+
+\begin{newitemize}
+  \item Password Over TLS (baseline): This protocol leverages the Transport Layer Security (TLS) protocol to encrypt the communication between the client and server, ensuring that the password is transmitted securely. The server then checks the user's password by comparing it to the stored value in the database.
+  \item Secure Remote Password (SRP): SRP is a PAKE protocol that allows the client and server to authenticate each other and establish a shared session key without explicitly revealing the password. The protocol involves a series of computations and message exchanges to verify the password without transmitting it in plain text.
+  \item OPAQUE: OPAQUE is a more recent PAKE protocol that utilizes an oblivious pseudorandom function (OPRF) to perform the password-based key exchange. This protocol aims to provide stronger security guarantees and protect against a wider range of attacks, such as offline dictionary attacks and server compromise.
+\end{newitemize}
+
+By evaluating these different PAKE protocols, we aimed to gain a comprehensive understanding of the tradeoffs between their usability, performance, and security characteristics, ultimately providing insights to guide the adoption of PAKE-based authentication in real-world applications.

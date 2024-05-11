@@ -1,0 +1,61 @@
+\section{Usability Evaluation Survey}
+\label{sec:survey}
+
+Below is the survey we provided to collect user responses.
+
+\begin{itemize}
+    \item \textbf{Background Information}    
+\end{itemize}
+
+
+Password-Authenticated Key Exchange (PAKE) protocols are a class of cryptographic techniques designed to allow secure authentication and key exchange between a client and a server, using only a user's password as the shared secret. This is in contrast to traditional password storage methods, which rely on storing password hashes with salts on the server side, which can be vulnerable to data breaches.
+
+As part of our research, we have implemented and evaluated two novel PAKE protocols: SRP (Secure Remote Password) and OPAQUE. These protocols are designed to be resistant to password leaks, even if the server's database is compromised.
+
+We would like to gather your feedback on the usability and security perception of these PAKE protocol implementations. Your responses will help me improve the user experience and accessibility of these novel authentication techniques.
+
+The survey should take about 10-15 minutes to complete. Thank you in advance for your participation!
+
+\begin{enumerate}
+    \item Are you familiar with any password authenticated key exchange (PAKE) protocols? (Yes/No)
+    \item If yes, what do you know about PAKE protocols and their use cases?
+    \item Currently, the widely-used authentication methods requires storing encrypted password in the servers' databases. Do you think the current widely used authentication method has any problems? If so, what are they?
+    \item On a scale from 1 to 5, how secure do you feel your passwords are treated when submitting to service providers? 1 represents not secure, and 5 represents very secure.
+    \item PAKE protocols do not require your passwords to be even sent over the internet. In your opinion, on a scale from 1 to 5, how does the fact reinforce the protocol's security? 1 represents much less secure, and 5 represents much more secure.
+    \item If there is a new authentication logic that does not require you to send sensitive information (e.g. password) through the internet, on a scale from 1 to five, how likely will you prefer to use the new logic? 1 represents very unlikely, and 5 represents very likely.
+\end{enumerate}
+
+
+\begin{itemize}
+    \item \textbf{How about trying out PAKE protocols yourself!}
+\end{itemize}
+Below, we will provide 3 different authentication protocols (BASIC**, SRP, OPAQUE). There are different logics behind each of them, but their ultimate goal is to proof the proclaimed user to actually be themselves. Try to
+login these provided websites with our provided username and password (or go to the register page to create your own*). Try and feel the difference in latency between the three protocols, and continue with the survey.
+
+username: iamsurveyuser
+
+password: surveyuserpassword
+
+\textbf{* if you wish to create your own username or password, avoid using any keywords that may contain sensitive information, such as names or birthday. 
+The webpages are for demonstration only and we want to avoid any users leaving information sensitive data in the database, in case of any data breaches.}
+
+** BASIC represents Password over TLS
+
+BASIC: http://43.135.167.104:8085/login
+
+SRP: http://43.135.167.104:8080/login
+
+OPAQUE http://43.135.167.104:8082/login
+
+\begin{enumerate}
+    \setcounter{enumi}{6}
+    \item Compared to BASIC, on a scale from 1 to 5, how would you rate SRP's performance in speed? 1 represents much slower, and 5 represents much faster.
+    \item Compared to BASIC, on a scale from 1 to 5, how would you rate OPAQUE's performance in speed? 1 represents much slower, and 5 represents much faster.
+    \item Are there any significant difference you noticed while using the three demo websites?
+    \item If you encountered any difficulties while using the demo, please let us know!
+\end{enumerate}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

@@ -1,3 +1,30 @@
 \section{Conclusion}
+\label{sec:conclusion}
+A need of new authentication method rises since the vulnerability of Password over TLS rely heavily on the safety measurements made by server providers.
+PAKE protocols leverage cryptographic techniques to ensure both client and server would not know any information other than success or failure in one login attempt.
+Our goal is to evaluate the usability of two PAKE protocols, SRP and OPAQUE, of their possibility of deployment and user friendliness. 
+To facilitate this, we developed three identical web services utilizing SRP, OPAQUE, and Password over TLS.
+Each service includes a register and a login page to enable system-wide analysis, complemented by a user experience study conducted through a structured survey.
+
+Our study revealed that // TODO: put some findings for Sec. 4 //
+
+We think that // TODO: put some implications for Sec. 4 //
+
+Moreover, the survey revealed that most of our participants has never heard of PAKE protocols, suggesting the opportunity for broader awareness regarding PAKEs.
+Participants also showed much interest in PAKE protocols, due to the fact that PAKEs eliminated the need to transmit passwords over the internet and save them in service providers' databases.
+This suggests that users are unlikely to be the primary reason for the limited adoption of PAKE protocols among various authentication methods.
+Lastly, participants reported similar waiting time for the two PAKE protocols compared to Password over TLS.
+This further supports our guess that the calculation work load required on server side is the reason why PAKE has not been widely implemented. 
+We did not gather information regarding the device models participants utilized during their interaction with our implementation.
+This oversight may serve as a factor influencing the potential variability in wait times observed for PAKE protocols.
+
+We believe PAKE protocols hold promise for adoption in production environments. 
+We anticipate that our contribution will help advance the integration of PAKEs into production systems.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
 
 

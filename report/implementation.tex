@@ -1,4 +1,5 @@
 \section{Implementation}
+\label{sec:intro}
 
 To measure the difference between PAKE protocols and password over TLS, we chose to create three identical applications that utilize different protocols as authentication methods - SRP, OPAQUE, and Password over TLS, where the Password over TLS implementation is used as a control to compare the differences with the PAKE protocols.
 A simple registration and login page is created for each of the authentication methods, and to minimize the difference between the authentication methods, we tried to develop all three of them using same JavaScript modules. 
@@ -133,3 +134,4 @@ Then, we asked them if there is a protocol that requires no sensitive informatio
 Lastly, we provided the IP address to our implementations, and asked them to try the three services out themselves.
 We then ask them if they feel any latency in response time between the three protocols.
 
+The full survey is provided in ~\secref{sec:survey}

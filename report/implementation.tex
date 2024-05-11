@@ -3,23 +3,11 @@
 
 To measure the difference between PAKE protocols and password over TLS, we chose to create three identical applications that utilize different protocols as authentication methods - SRP, OPAQUE, and Password over TLS, where the Password over TLS implementation is used as a control to compare the differences with the PAKE protocols.
 A simple registration and login page is created for each of the authentication methods, and to minimize the difference between the authentication methods, we tried to develop all three of them using same JavaScript modules. 
-We chose to use React for our client side front end framework, ExpressJS for server side back end, and MongoDB for the database.
+We chose to use React for our client side front end framework, NodeJS for server side back end, and MongoDB for the database.
 Lastly, the client will communicate to the server with HTTP requests.
-The frameworks we chose are commonly see in actual implementation around the world today, which we believe that by using these frameworks we can yield a closer performance to what it would be if these protocols were used in actual production.
-
-% After we implemented the 
+The frameworks we chose are commonly see in actual implementation around the world today, which we believe that by using these frameworks we can yield a closer performance to what it would be if these protocols were used in actual production ~\cite{swacha2023evolution}.
 
 Also, to understand how other users would feel about PAKE protocols, we created a questionnaire for users to fill out after trying out our implementation, in the hope for learning not only their experience with our implementation, but also their perspectives towards the promises of PAKE protocols.
-
-
-% The question will be provided in {appendix}
-% TODO: change LATEX for appendix
-
-% where host, 
-% survey targets
-% run separately
-% website details
-% versions of code / modules
 
 
 \subsection{Service design}
@@ -46,7 +34,7 @@ We created 3 different databases in MongoDB, with each one dedicated to store da
 
 \subsection{SRP}
 % \label{sec:srp}
-After searching over Github for a proper implementation for SRP protocols in JavasSript, we chose the implementation by LinusU/\newline secure-remote-password that has actual source code which we can investigate, and the fact that the repository has multiple stars strengthen our belief that it is a good implementation. 
+After searching over Github for a proper implementation for SRP protocols in JavasSript, we chose the implementation by LinusU/\newline secure-remote-password that has actual source code which we can investigate, and the fact that the repository has multiple stars strengthen our belief that it is a good implementation ~\cite{SRPrepo}. 
 % The SRP module implementation can be found here:
 % TODO: find a way to put the link to the github page here
 
@@ -74,7 +62,7 @@ The server will then send a proof back to the client, allowing the client to che
 
 \subsection{OPAQUE}
 % \label{sec:opaque}
-We decided to use the implementation by serenity-kit/opaque on Github, which was still maintained up until three months ago, with a website for detailed documentation.
+We decided to use the implementation by serenity-kit/opaque on Github, which was still maintained up until three months ago, with a website for detailed documentation ~\cite{OPAQUErepo}.
 Although the source code for the protocol is not provided on Github, the fact that it is based on another Meta project and the thorough documentation prompted our decision to use this implementation.
 
 \subsubsection{Setting up the server:}

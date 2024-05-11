@@ -23,7 +23,7 @@ Routing in these pages is managed with React-router-dom, and communications with
 
 \subsubsection{Back end:}
 
-Our back end implementation uses ExpressJS to serve as the central hub for server-side calculations and to facilitate communication with the MongoDB database using the mongoose module.
+Our back end implementation uses NodeJS to serve as the central hub for server-side calculations and to facilitate communication with the MongoDB database using the mongoose module.
 To ensure seamless interaction, Cross-Origin Resource Sharing (CORS) is enabled across all routes, with the origin set to the front end service's IP address. 
 The back end service is designed to listen on a port and handle register or login API calls from the client. 
 There might be multiple routes required for one register or login request due to to design of protocol, but on a successful attempt all the routes should be executed exactly once.
@@ -34,9 +34,8 @@ We created 3 different databases in MongoDB, with each one dedicated to store da
 
 \subsection{SRP}
 % \label{sec:srp}
-After searching over Github for a proper implementation for SRP protocols in JavasSript, we chose the implementation by LinusU/\newline secure-remote-password that has actual source code which we can investigate, and the fact that the repository has multiple stars strengthen our belief that it is a good implementation.~\cite{SRPrepo}
+After searching over GitHub for a proper implementation for SRP protocols in JavasSript, we chose the implementation by LinusU/\newline secure-remote-password that has actual source code which we can investigate, and the fact that the repository has multiple stars strengthen our belief that it is a good implementation.~\cite{SRPrepo}
 % The SRP module implementation can be found here:
-% TODO: find a way to put the link to the github page here
 
 \subsubsection{Register flow:}
 To register to a SRP service, the client side will start by generating a salt, and derive a private key through the salt, username and password.
@@ -62,8 +61,8 @@ The server will then send a proof back to the client, allowing the client to che
 
 \subsection{OPAQUE}
 % \label{sec:opaque}
-We decided to use the implementation by serenity-kit/opaque on Github, which was still maintained up until three months ago, with a website for detailed documentation.~\cite{OPAQUErepo}
-Although the source code for the protocol is not provided on Github, the fact that it is based on another Meta project and the thorough documentation prompted our decision to use this implementation.
+We decided to use the implementation by serenity-kit/opaque on GitHub, which was still maintained up until three months ago, with a website for detailed documentation.~\cite{OPAQUErepo}
+Although the source code for the protocol is not provided on GitHub, the fact that it is based on another Meta project and the thorough documentation prompted our decision to use this implementation.
 
 \subsubsection{Setting up the server:}
 OPAQUE requires a long-term secret key to perform any server-side calculations.

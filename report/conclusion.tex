@@ -6,9 +6,11 @@ Our goal is to evaluate the usability of two PAKE protocols, SRP and OPAQUE, of 
 To facilitate this, we developed three identical web services utilizing SRP, OPAQUE, and Password over TLS.
 Each service includes a register and a login page to enable system-wide analysis, complemented by a user experience study conducted through a structured survey.
 
-Our study revealed that // TODO: put some findings for Sec. 4 //
+Our study revealed that the PAKE protocols, namely SRP and OPAQUE, incurred higher computational overhead on the server compared to the baseline password-over-TLS authentication. The SRP protocol exhibited significantly higher and more variable CPU usage over time, which could potentially be a bottleneck for servers handling a large number of concurrent authentication requests. The OPAQUE protocol, on the other hand, showed elevated but more stable CPU usage compared to SRP, suggesting better efficiency in its server-side implementation.
 
-We think that // TODO: put some implications for Sec. 4 //
+We think that the increased server-side resource utilization of the PAKE protocols is an important practical consideration for their deployment in real-world applications. While PAKE protocols provide stronger security guarantees by protecting the user's password from exposure, system administrators and decision-makers must carefully evaluate the tradeoffs between the security benefits and the potential performance impact on the server infrastructure. Optimizing the PAKE protocol implementations or adopting more efficient cryptographic primitives could help mitigate the performance challenges and make the deployment of PAKE-based authentication more feasible in high-load scenarios.
+
+Additionally, the client-side experience revealed that the PAKE protocols, especially SRP, exhibited longer and more variable response times compared to the baseline password-over-TLS authentication. This could negatively impact the user experience, as users may perceive the authentication process as less responsive and efficient. Continued efforts to streamline the client-side operations and reduce the communication overhead between the client and server could help improve the user-perceived performance of PAKE-based authentication.
 
 Moreover, the survey revealed that most of our participants has never heard of PAKE protocols, suggesting the opportunity for broader awareness regarding PAKEs.
 Participants also showed much interest in PAKE protocols, due to the fact that PAKEs eliminated the need to transmit passwords over the internet and save them in service providers' databases.
